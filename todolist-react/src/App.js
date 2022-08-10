@@ -26,7 +26,11 @@ function toggleTodo(id) {
   setTodos(newTodos)
 }
 
-function handleAddtodo(e) {
+function handleCleartodos(){
+const newTodos = todos.filter (todo=> !todo.complete)
+setTodos(newTodos)
+}
+function handleAddtodo() {
 const name = todoNameRef.current.value
 if (name === '') return 
 setTodos(prevTodos => {
@@ -40,7 +44,7 @@ todoNameRef.current.value = null
     <Todolist todos = {todos} toggleTodo= {toggleTodo} />
     <input ref={todoNameRef} type = "text" />
     <button onClick={handleAddtodo}> Add Todos</button>
-    <button>Clear Complete</button>
+    <button onClick={handleCleartodos}>Clear Complete</button>
     <div>{todos.filter(todo => !todo.complete).length} left to do</div>
     </>
   );
